@@ -45,12 +45,12 @@ contract CoinBingo is usingOraclize {
     event LogNewParticipant(address _participant, string _coin, uint _bets, uint256 _pot);
 
     modifier whileBetsAllowed() {
-        // if (block.timestamp > betsAllowedUntil) throw;
+        if (block.timestamp > betsAllowedUntil) throw;
         _;
     }
 
     modifier afterPriceAction() {
-        // if ((block.timestamp - (7 * DAY_IN_SECONDS)) < betsAllowedUntil) throw;
+        if ((block.timestamp - (7 * DAY_IN_SECONDS)) < betsAllowedUntil) throw;
         _;
     }
 
@@ -60,7 +60,7 @@ contract CoinBingo is usingOraclize {
     }
     
     modifier withdrawalsAllowed() {
-        // if (!dormant && block.timestamp > betsAllowedUntil) throw;
+        if (!dormant && block.timestamp > betsAllowedUntil) throw;
         _;
     }
     
